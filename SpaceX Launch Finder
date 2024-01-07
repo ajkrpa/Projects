@@ -3,7 +3,7 @@
 # launch details (mission name, rocket, etc.) returned
 
 import requests
-import textwrap
+import textwrap # used to wrap the text of 'details'
 
 launch_number = input("Enter launch number: ")
 r = requests.get(f'https://api.spacexdata.com/v3/launches/{launch_number}')
