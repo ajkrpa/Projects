@@ -1,0 +1,32 @@
+# launch number is inputted
+# launch details (mission name, rocket, etc.) outputted
+# requests library used to gets data from spacex launch api
+
+import requests
+import textwrap
+
+launch_number = input("Enter launch number: ")
+r = requests.get(f'https://api.spacexdata.com/v3/launches/{launch_number}')
+# print(r.json())
+
+if r.status_code == 200:
+    data = r.json()
+    mission_name = data['mission_name']
+    flight_number = data['flight_number']
+    rocket_name = data['rocket']['rocket_name']
+    launch_year = data['launch_year']
+    launch_site = data['launch_site']['site_name_long']
+    video_link = data['links']['video_link']
+    details = data['details']
+
+
+    print("\nMission Name:", mission_name)
+    print("Launch Number:", flight_number)
+    print("Launch Vehicle:", rocket_name)
+    print("Year:", launch_year)
+    print("Launch Site:", launch_site)
+    print("Video:", video_link)
+    print(textwrap.fill(f"Details: {details}"))
+
+else:
+    print("ERROR: Inavlid Number")
