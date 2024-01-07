@@ -1,13 +1,13 @@
-# launch number is inputted
-# launch details (mission name, rocket, etc.) outputted
-# requests library used to gets data from spacex launch api
+# user inputs launch number 
+# data is requested from spacex launch api 
+# launch details (mission name, rocket, etc.) returned
 
 import requests
 import textwrap
 
 launch_number = input("Enter launch number: ")
 r = requests.get(f'https://api.spacexdata.com/v3/launches/{launch_number}')
-# print(r.json())
+# print(r.json()) # used to return json file of launch data 
 
 if r.status_code == 200:
     data = r.json()
@@ -30,3 +30,4 @@ if r.status_code == 200:
 
 else:
     print("ERROR: Inavlid Number")
+
